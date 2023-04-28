@@ -17,6 +17,7 @@ export class HomePage implements OnInit {
 
   constructor(
     private http: HttpService,
+    private modalCtrl: ModalController
   ) {}
 
   async ngOnInit() {
@@ -60,14 +61,15 @@ export class HomePage implements OnInit {
       this.loading = false;
       console.log(resultById);
 
-      /*const modal = await this.modalCtrl.create({
-        component: MovieAboutComponent,
+      const modal = await this.modalCtrl.create({
+        component: DetailsModalComponent,
         cssClass: 'radioModal',
         componentProps: {
-          resultApiId: resultId
+          resultById
         },
         backdropDismiss: true,
-      });*/
+      });
+      await modal.present();
     });
   }
 }
