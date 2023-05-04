@@ -7,16 +7,55 @@
             <ion-card-title>{{resultById.name}}</ion-card-title>
             <ion-card-subtitle>Sprint atual: {{caption}}</ion-card-subtitle>
           </ion-card-header>
-          <swiper-container class="ion-text-center" (slidechange)="onSlideChange($event)">
-            <ng-container *ngFor="let sprite of spritesArray">
-              <swiper-slide>
-                <img src={{sprite.value}} alt="" style="width: 350px;">
-              </swiper-slide>
-            </ng-container>
-          </swiper-container>
           <ion-card-content>
-            Here's a small text description for the card content. Nothing more, nothing less.
+            <swiper-container class="ion-text-center" (slidechange)="onSlideChange($event)">
+              <ng-container *ngFor="let sprite of spritesArray">
+                <swiper-slide>
+                  <img src={{sprite.value}} alt="" style="width: 350px;">
+                </swiper-slide>
+              </ng-container>
+            </swiper-container>
+            <ion-accordion-group [multiple]="true">
+              <ion-accordion value="first">
+                <ion-item slot="header" color="light">
+                  <ion-label>Abilities</ion-label>
+                </ion-item>
+                <div class="ion-padding" slot="content">First Content</div>
+              </ion-accordion>
+              <ion-accordion value="first">
+                <ion-item slot="header" color="light">
+                  <ion-label>Moves</ion-label>
+                </ion-item>
+                <div class="ion-padding" slot="content">First Content</div>
+              </ion-accordion>
+              <ion-accordion value="first">
+                <ion-item slot="header" color="light">
+                  <ion-label>Types</ion-label>
+                </ion-item>
+                <div class="ion-padding" slot="content">First Content</div>
+              </ion-accordion>
+              <ion-accordion value="first">
+                <ion-item slot="header" color="light">
+                  <ion-label>First Accordion</ion-label>
+                </ion-item>
+                <div class="ion-padding" slot="content">First Content</div>
+              </ion-accordion>
+              <ion-accordion value="first">
+                <ion-item slot="header" color="light">
+                  <ion-label>First Accordion</ion-label>
+                </ion-item>
+                <div class="ion-padding" slot="content">First Content</div>
+              </ion-accordion>
+              <ion-accordion value="first">
+                <ion-item slot="header" color="light">
+                  <ion-label>First Accordion</ion-label>
+                </ion-item>
+                <div class="ion-padding" slot="content">First Content</div>
+              </ion-accordion>
+            </ion-accordion-group>
           </ion-card-content>
+        </ion-card>
+        <ion-card>
         </ion-card>
       </ion-col>
     </ion-row>
