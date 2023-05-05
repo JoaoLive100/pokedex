@@ -1,10 +1,20 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Details</ion-title>
+    <ion-buttons slot="end" (click)="closeModal()">
+      <ion-button>
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
 <ion-content>
   <ion-grid>
     <ion-row>
       <ion-col size="12">
         <ion-card>
           <ion-card-header>
-            <ion-card-title>{{resultById.name}}</ion-card-title>
+            <ion-card-title>{{resultById.name}}<ion-badge *ngFor="let type of resultById.types" class="{{type.type.name}}" style="float: right;margin: 5px;font-size: 15px;">{{type.type.name}}</ion-badge></ion-card-title>
             <ion-card-subtitle>Sprint atual: {{caption}}</ion-card-subtitle>
           </ion-card-header>
           <ion-card-content>
@@ -16,46 +26,56 @@
               </ng-container>
             </swiper-container>
             <ion-accordion-group [multiple]="true">
-              <ion-accordion value="first">
+              <ion-accordion value="general">
+                <ion-item slot="header" color="light">
+                  <ion-label>General</ion-label>
+                </ion-item>
+                <div class="ion-padding" slot="content">ID - {{resultById.id}}</div>
+                <div class="ion-padding" slot="content">Name - {{resultById.name}}</div>
+                <div class="ion-padding" slot="content">Is Default - {{resultById.is_default}}</div>
+                <div class="ion-padding" slot="content">Base Experience - {{resultById.base_experience}}</div>
+                <div class="ion-padding" slot="content">Order - {{resultById.order}}</div>
+                <div class="ion-padding" slot="content">Height - {{resultById.height}}</div>
+                <div class="ion-padding" slot="content">Weight - {{resultById.weight}}</div>
+              </ion-accordion>
+              <ion-accordion value="abilities">
                 <ion-item slot="header" color="light">
                   <ion-label>Abilities</ion-label>
                 </ion-item>
-                <div class="ion-padding" slot="content">First Content</div>
+                <div class="ion-padding" slot="content" *ngFor="let ability of resultById.abilities">{{ability.ability.name}}</div>
               </ion-accordion>
-              <ion-accordion value="first">
+              <ion-accordion value="forms">
+                <ion-item slot="header" color="light">
+                  <ion-label>Forms</ion-label>
+                </ion-item>
+                <div class="ion-padding" slot="content" *ngFor="let form of resultById.forms">{{form.name}}</div>
+              </ion-accordion>
+              <ion-accordion value="game-indices">
+                <ion-item slot="header" color="light">
+                  <ion-label>Game Indices</ion-label>
+                </ion-item>
+                <div class="ion-padding" slot="content" *ngFor="let gameIndice of resultById.game_indices">{{gameIndice.version.name}} - {{gameIndice.game_index}}</div>
+              </ion-accordion>
+              <ion-accordion value="moves">
                 <ion-item slot="header" color="light">
                   <ion-label>Moves</ion-label>
                 </ion-item>
-                <div class="ion-padding" slot="content">First Content</div>
+                <div class="ion-padding" slot="content" *ngFor="let move of resultById.moves">{{move.move.name}}</div>
               </ion-accordion>
-              <ion-accordion value="first">
+              <ion-accordion value="stats">
+                <ion-item slot="header" color="light">
+                  <ion-label>Stats</ion-label>
+                </ion-item>
+                <div class="ion-padding" slot="content" *ngFor="let stats of resultById.stats">Stat: {{stats.stat.name}} | Base Stat: {{stats.base_stat}} | Effort: {{stats.effort}}</div>
+              </ion-accordion>
+              <ion-accordion value="types">
                 <ion-item slot="header" color="light">
                   <ion-label>Types</ion-label>
                 </ion-item>
-                <div class="ion-padding" slot="content">First Content</div>
-              </ion-accordion>
-              <ion-accordion value="first">
-                <ion-item slot="header" color="light">
-                  <ion-label>First Accordion</ion-label>
-                </ion-item>
-                <div class="ion-padding" slot="content">First Content</div>
-              </ion-accordion>
-              <ion-accordion value="first">
-                <ion-item slot="header" color="light">
-                  <ion-label>First Accordion</ion-label>
-                </ion-item>
-                <div class="ion-padding" slot="content">First Content</div>
-              </ion-accordion>
-              <ion-accordion value="first">
-                <ion-item slot="header" color="light">
-                  <ion-label>First Accordion</ion-label>
-                </ion-item>
-                <div class="ion-padding" slot="content">First Content</div>
+                <div class="ion-padding" slot="content" *ngFor="let type of resultById.types">{{type.slot}} - {{type.type.name}}</div>
               </ion-accordion>
             </ion-accordion-group>
           </ion-card-content>
-        </ion-card>
-        <ion-card>
         </ion-card>
       </ion-col>
     </ion-row>

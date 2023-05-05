@@ -13,10 +13,10 @@ export class HomePage implements OnInit {
   pokemon!: any[];
   filterPokemon!: any[];
   searchQuery: string = '';
-  selectedOption: number = 1;
+  selectedOption: any = '1';
   loading = true;
-  offset: any = 0;
-  limit: any = 151;
+  offset: any;
+  limit: any;
 
   constructor(
     private http: HttpService,
@@ -24,13 +24,10 @@ export class HomePage implements OnInit {
   ) {}
 
   async ngOnInit() {
-    setTimeout(async () => {
-      await this.loadPokemon();
-    }, 500);
+    await this.loadPokemon();
   }
 
   async loadPokemon() {
-    console.log(Number(this.selectedOption));
     switch (Number(this.selectedOption)) {
       case 1:
         this.offset = 0;
@@ -68,7 +65,12 @@ export class HomePage implements OnInit {
         this.offset = 898;
         this.limit = 84;
         break;
+      default:
+        this.offset = 0;
+        this.limit = 151;
+        break;
     }
+
     await this.http.getPokemon(this.offset, this.limit).then((result: any) => {
       this.loading = false;
       this.pokemon = result.results;
@@ -87,7 +89,9 @@ export class HomePage implements OnInit {
     this.loading = true;
     if(event.detail.value !== ''){
         this.filterPokemon = this.pokemon.filter(item => {
-          return item.name.toLowerCase().indexOf(searchTerm) > -1;
+          const nameMatch = item.name.toLowerCase().indexOf(searchTerm) > -1;
+          const idMatch = item.id.toLowerCase().indexOf(searchTerm) > -1;
+          return nameMatch || idMatch;
         });
         this.loading = false;
     } else {
@@ -112,4 +116,5 @@ export class HomePage implements OnInit {
       await modal.present();
     });
   }
+
 }

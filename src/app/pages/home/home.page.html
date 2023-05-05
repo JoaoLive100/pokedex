@@ -7,16 +7,15 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content>
   <ion-grid>
     <ion-row>
-      <ion-col size="10">
-        <ion-searchbar [(ngModel)]="searchQuery" (ionChange)="filterList($event)" show-clear-button="never"></ion-searchbar>
+      <ion-col size-xs="7" size-sm="7" size-md="9" size-lg="10" size-xl="10">
+        <ion-searchbar [(ngModel)]="searchQuery" (ionChange)="filterList($event)" show-clear-button="never" placeholder="Name or ID"></ion-searchbar>
       </ion-col>
-      <ion-col size="2">
+      <ion-col size-xs="5" size-sm="5" size-md="3" size-lg="2" size-xl="2">
         <ion-item>
-          <ion-label>Generation:</ion-label>
-          <ion-select [(ngModel)]="selectedOption" (ionChange)="loadPokemon()" interface="popover">
+          <ion-select [(ngModel)]="selectedOption" (ionChange)="loadPokemon()" interface="popover" justify="start" label="Gen:">
             <ion-select-option value="1">1 - Kanto</ion-select-option>
             <ion-select-option value="2">2 - Johto</ion-select-option>
             <ion-select-option value="3">3 - Hoenn</ion-select-option>
@@ -26,7 +25,6 @@
             <ion-select-option value="7">7 - Alola</ion-select-option>
             <ion-select-option value="8">8 - Galar</ion-select-option>
             <ion-select-option value="9">9 - Paldea</ion-select-option>
-
           </ion-select>
         </ion-item>
       </ion-col>
@@ -35,10 +33,10 @@
       <ion-col class="ion-text-center" size-xs="12" size-sm="12" size-md="6" size-lg="3" size-xl="3" *ngFor="let item of filterPokemon">
         <ion-card (click)="openDetailsModal(item.id)">
           <ion-card-header>
-            <ion-card-title>{{item.name}}</ion-card-title>
+            <ion-card-title>#{{item.id}} - {{item.name}}</ion-card-title>
           </ion-card-header>
           <ion-card-content>
-              <img src={{item.image}} alt="" />
+              <img src={{item.image}} />
           </ion-card-content>
         </ion-card>
       </ion-col>
