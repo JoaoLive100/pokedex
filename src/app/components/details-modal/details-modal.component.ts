@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-details-modal',
@@ -12,7 +13,9 @@ export class DetailsModalComponent  implements OnInit {
   spritesArray!: any[];
   caption: any;
 
-  constructor() { }
+  constructor(
+    private modalCtrl: ModalController
+  ) { }
 
   ngOnInit() {
     if (this.resultById) {
@@ -35,5 +38,11 @@ export class DetailsModalComponent  implements OnInit {
   onSlideChange(event: any) {
     this.caption = this.spritesArray[event.detail[0].activeIndex].key;
   }
+
+  async closeModal() {
+    await this.modalCtrl.dismiss();
+  }
+
+
 
 }
